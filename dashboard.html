@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Study Command Center | Pro</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="dark-mode">
     <div class="bg-gradient-overlay"></div>
-    
+
     <div class="app-container">
         <nav class="sidebar">
             <div class="logo">
@@ -19,7 +22,8 @@
             </div>
             <ul class="nav-links">
                 <li class="active"><i class="fas fa-th-large"></i> Dashboard</li>
-                <li><i class="fas fa-chart-line"></i> Analytics</li>
+                <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+
                 <li><i class="fas fa-wallet"></i> Savings</li>
                 <li><i class="fas fa-cog"></i> Settings</li>
             </ul>
@@ -53,8 +57,10 @@
                     <span class="label">Discipline Score</span>
                     <div class="circle-box">
                         <svg viewBox="0 0 36 36" class="circular-chart">
-                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <path class="circle neon-stroke" stroke-dasharray="82, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle-bg"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle neon-stroke" stroke-dasharray="82, 100"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                         </svg>
                         <h2 class="counter">82%</h2>
                     </div>
@@ -91,7 +97,8 @@
                     </div>
                     <div class="ai-content">
                         <h3>AI Growth Insight</h3>
-                        <p>Consistency peak detected. Increasing study by <strong>1 hour</strong> will trigger a 22% increase in retention. Proceed with optimization?</p>
+                        <p>Consistency peak detected. Increasing study by <strong>1 hour</strong> will trigger a 22%
+                            increase in retention. Proceed with optimization?</p>
                     </div>
                 </div>
             </div>
@@ -100,4 +107,5 @@
 
     <script src="dashboard.js"></script>
 </body>
+
 </html>

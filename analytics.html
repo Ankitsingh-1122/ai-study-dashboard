@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Analytics | Performance Insights</title>
+    <link rel="stylesheet" href="analytics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-mode">
+    <div class="bg-gradient-overlay"></div>
+    <div class="glow-corner top-left"></div>
+    <div class="glow-corner bottom-right"></div>
+
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-rocket neon-purple"></i>
+                <span>CORE AI</span>
+            </div>
+            <ul class="nav-links">
+                <li onclick="location.href='dashboard.html'"><i class="fas fa-th-large"></i> <span>Dashboard</span></li>
+                <li class="active"><i class="fas fa-chart-line"></i> <span>Analytics</span></li>
+                <li><i class="fas fa-wallet"></i> <span>Savings</span></li>
+                <li><i class="fas fa-cog"></i> <span>Settings</span></li>
+            </ul>
+            <div class="sidebar-footer">
+                <button class="logout-btn">Logout</button>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Performance Analytics</h1>
+                    <p>Deep dive into your <span class="neon-purple">productivity metrics</span></p>
+                </div>
+                <div class="header-actions">
+                    <div class="time-box" id="current-time">00:00:00</div>
+                </div>
+            </header>
+
+            <div class="analytics-grid">
+                <div class="card wide-card neon-card">
+                    <div class="card-header">
+                        <span class="label">Study Hours Trend</span>
+                        <div class="badge">Weekly View</div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="performanceLineChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card neon-card flex-center">
+                    <span class="label">Focus Intensity</span>
+                    <div class="chart-wrapper-small">
+                        <canvas id="focusDoughnutChart"></canvas>
+                    </div>
+                    <div class="stats-footer">
+                        <h2 class="neon-purple">94%</h2>
+                        <p>Efficiency Rate</p>
+                    </div>
+                </div>
+
+                <div class="card wide-card neon-card">
+                    <span class="label">Subject Time Allocation</span>
+                    <div class="chart-wrapper">
+                        <canvas id="subjectBarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card neon-card milestone">
+                    <i class="fas fa-trophy neon-purple"></i>
+                    <h3>Next Milestone</h3>
+                    <p>Complete 50 hours this month to unlock "Expert" status.</p>
+                    <div class="mini-progress"><div class="fill" style="width: 70%"></div></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="analytics.js"></script>
+</body>
+</html>
