@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Command | System Settings</title>
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    <div class="bg-gradient-overlay"></div>
+    <div class="glow-corner top-left"></div>
+    <div class="glow-corner bottom-right"></div>
+
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-rocket neon-purple"></i>
+                <span>CORE AI</span>
+            </div>
+            <ul class="nav-links">
+                <li onclick="location.href='dashboard.html'"><i class="fas fa-th-large"></i> <span>Dashboard</span></li>
+                <li onclick="location.href='analytics.html'"><i class="fas fa-chart-line"></i> <span>Analytics</span></li>
+                <li onclick="location.href='savings.html'"><i class="fas fa-wallet"></i> <span>Savings</span></li>
+                <li class="active"><i class="fas fa-cog"></i> <span>Settings</span></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>System Settings</h1>
+                    <p>Configure your <span class="neon-purple">Environment & Feedback</span></p>
+                </div>
+            </header>
+
+            <div class="settings-container">
+                <div class="card neon-card">
+                    <div class="card-header">
+                        <i class="fas fa-volume-up neon-purple"></i>
+                        <h3>Audio & Notifications</h3>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="info">
+                            <span>System Alerts</span>
+                            <p>Enable sounds for study milestones and breaks</p>
+                        </div>
+                        <label class="neon-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="info">
+                            <span>Alert Volume</span>
+                            <p id="vol-label">Volume: 75%</p>
+                        </div>
+                        <input type="range" id="vol-slider" class="custom-slider" min="0" max="100" value="75">
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="info">
+                            <span>Sound Theme</span>
+                            <p>Current: <span class="neon-purple">Cyber-Cyber</span></p>
+                        </div>
+                        <select class="custom-select">
+                            <option>Cyber-Cyber</option>
+                            <option>Nature Ambient</option>
+                            <option>Lo-Fi Focus</option>
+                            <option>Classic Minimal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card neon-card">
+                    <div class="card-header">
+                        <i class="fas fa-brain neon-purple"></i>
+                        <h3>AI Personality</h3>
+                    </div>
+                    <div class="setting-item">
+                        <div class="info">
+                            <span>Strict Mode</span>
+                            <p>AI will be more aggressive about discipline</p>
+                        </div>
+                        <label class="neon-switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="info">
+                            <span>Predictive Insights</span>
+                            <p>Allow AI to suggest study schedule changes</p>
+                        </div>
+                        <label class="neon-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-footer">
+                    <button class="btn-outline">Reset to Defaults</button>
+                    <button class="btn-primary">Save Configuration</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="settings.js"></script>
+</body>
+</html>

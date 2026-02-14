@@ -1,0 +1,57 @@
+:root {
+    --neon-purple: #bf40ff;
+    --neon-glow: rgba(191, 64, 255, 0.4);
+    --bg-dark: #050508;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --text-dim: #94a3b8;
+    --success: #10b981;
+}
+
+/* Base and Corners (Keep consistent with Dashboard/Analytics) */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-dark); color: white; }
+
+.glow-corner { position: fixed; width: 500px; height: 500px; background: var(--neon-purple); filter: blur(180px); opacity: 0.12; z-index: -1; }
+.top-left { top: -150px; left: -150px; }
+.bottom-right { bottom: -150px; right: -150px; }
+
+/* Grid Styling */
+.savings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.wide-card { grid-column: span 2; }
+
+/* Card Components */
+.card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 2rem; position: relative; transition: 0.3s; }
+.neon-card:hover { border-color: var(--neon-purple); box-shadow: 0 0 30px var(--neon-glow); }
+
+.main-balance { display: flex; justify-content: space-between; align-items: center; grid-column: span 2; border-left: 5px solid var(--neon-purple); }
+.balance-amount { font-size: 3rem; font-weight: 800; margin: 10px 0; }
+.growth-tag { color: var(--success); font-size: 0.9rem; font-weight: 600; }
+
+/* Vault Pulse */
+.vault-status { text-align: center; position: relative; }
+.vault-status i { font-size: 2.5rem; color: var(--neon-purple); margin-bottom: 10px; }
+.pulse-ring { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; border: 2px solid var(--neon-purple); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { transform: translateX(-50%) scale(0.8); opacity: 1; } 100% { transform: translateX(-50%) scale(2); opacity: 0; } }
+
+/* Transaction List */
+.transaction-list { margin-top: 1.5rem; }
+.t-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.t-icon { width: 40px; height: 40px; border-radius: 12px; background: rgba(191, 64, 255, 0.1); display: flex; align-items: center; justify-content: center; margin-right: 15px; color: var(--neon-purple); }
+.t-details { flex-grow: 1; }
+.t-details span { font-size: 0.8rem; color: var(--text-dim); }
+.t-amount.positive { color: var(--success); font-weight: 700; }
+
+/* Circular Progress */
+.goal-visual { position: relative; width: 120px; margin: 20px auto; }
+.circle-bg { fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 3.8; }
+.circle { fill: none; stroke: var(--neon-purple); stroke-width: 3.8; stroke-linecap: round; filter: drop-shadow(0 0 5px var(--neon-purple)); }
+.percentage { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 800; font-size: 1.2rem; }
+
+.btn-primary { background: var(--neon-purple); border: none; padding: 12px 25px; border-radius: 12px; color: white; font-weight: 700; cursor: pointer; margin-top: 20px; width: 100%; }
+
+/* Sidebar/Nav CSS (Inherit from Dashboard) */
+.app-container { display: flex; min-height: 100vh; }
+.sidebar { width: 260px; padding: 2rem; background: rgba(10,10,15,0.8); border-right: 1px solid rgba(191, 64, 255, 0.2); }
+.nav-links { list-style: none; margin-top: 3rem; }
+.nav-links li { padding: 12px 20px; color: var(--text-dim); cursor: pointer; margin-bottom: 8px; border-radius: 12px; display: flex; gap: 15px; }
+.nav-links li.active { color: var(--neon-purple); background: rgba(191, 64, 255, 0.1); }
