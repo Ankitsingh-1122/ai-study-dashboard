@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, 
+        rgba(255, 75, 92, 0.6), 
+        rgba(155, 93, 229, 0.6), 
+        rgba(0, 187, 249, 0.6), 
+        rgba(0, 245, 212, 0.6)
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Moving Gradient */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Soft Light Effect */
+body::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 60%);
+    top: -200px;
+    left: -200px;
+    animation: floatLight 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatLight {
+    from { transform: translate(0,0); }
+    to { transform: translate(200px,150px); }
+}
+
+.login-container {
+    backdrop-filter: blur(25px);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 
+        0 25px 50px rgba(0,0,0,0.4),
+        inset 0 0 20px rgba(255,255,255,0.05);
+    width: 360px;
+    z-index: 2;
+    animation: floatCard 4s ease-in-out infinite;
+}
+
+/* Floating Card */
+@keyframes floatCard {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 2px solid rgba(255,255,255,0.6);
+    color: #fff;
+    font-size: 16px;
+}
+
+.input-group label {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    color: #ddd;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -10px;
+    font-size: 12px;
+    color: #fff;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff4b5c, #9b5de5);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s ease;
+    box-shadow: 0 0 15px rgba(255,75,92,0.6);
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 25px rgba(255,75,92,0.9),
+        0 0 40px rgba(155,93,229,0.8);
+}
+
+.signup-text {
+    margin-top: 20px;
+    text-align: center;
+    color: #eee;
+}
+
+.signup-text a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Bubble Glow */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: explode 1s ease-out forwards;
+    box-shadow: 
+        0 0 20px rgba(255,255,255,0.7),
+        0 0 40px currentColor;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

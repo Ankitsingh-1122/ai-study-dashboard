@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Command Center | Pro</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    <div class="bg-gradient-overlay"></div>
+    
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-rocket neon-purple"></i>
+                <span>CORE AI</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><i class="fas fa-th-large"></i> Dashboard</li>
+                <li><i class="fas fa-chart-line"></i> Analytics</li>
+                <li><i class="fas fa-wallet"></i> Savings</li>
+                <li><i class="fas fa-cog"></i> Settings</li>
+            </ul>
+            <div class="sidebar-footer">
+                <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Command Center</h1>
+                    <p>System Status: <span class="neon-purple">Optimal</span></p>
+                </div>
+                <div class="header-actions">
+                    <div class="time-box" id="current-time">00:00:00</div>
+                    <div class="mode-toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="mode-toggle" checked>
+                            <span class="slider round">
+                                <i class="fas fa-moon"></i>
+                                <i class="fas fa-sun"></i>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="card neon-card">
+                    <span class="label">Discipline Score</span>
+                    <div class="circle-box">
+                        <svg viewBox="0 0 36 36" class="circular-chart">
+                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle neon-stroke" stroke-dasharray="82, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <h2 class="counter">82%</h2>
+                    </div>
+                </div>
+
+                <div class="card neon-card">
+                    <span class="label">Study Hours Today</span>
+                    <h2 class="big-text"><span id="hour-val">5</span><small>hrs</small></h2>
+                    <div class="neon-progress-container">
+                        <div class="neon-progress-fill" style="width: 60%"></div>
+                    </div>
+                    <input type="range" id="hour-slider" min="1" max="12" value="5" class="custom-slider">
+                </div>
+
+                <div class="card neon-card">
+                    <span class="label">Current Streak</span>
+                    <div class="streak-box">
+                        <i class="fas fa-fire-alt neon-icon-fire"></i>
+                        <h2 class="big-text">12<small>days</small></h2>
+                    </div>
+                    <p class="insight-text">+2 days above average</p>
+                </div>
+
+                <div class="card neon-card">
+                    <span class="label">Monthly Savings</span>
+                    <h2 class="big-text">₹15,000</h2>
+                    <div class="tag">Next payout: 4 days</div>
+                </div>
+
+                <div class="card wide-card neon-card">
+                    <div class="ai-branding">
+                        <div class="pulse-ring"></div>
+                        <i class="fas fa-brain neon-purple"></i>
+                    </div>
+                    <div class="ai-content">
+                        <h3>AI Growth Insight</h3>
+                        <p>Consistency peak detected. Increasing study by <strong>1 hour</strong> will trigger a 22% increase in retention. Proceed with optimization?</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
