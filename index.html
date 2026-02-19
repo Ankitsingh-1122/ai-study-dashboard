@@ -14,38 +14,31 @@
 
 <body>
 
-<div class="wrapper">
+<div class="right">
+    <h1>Login</h1>
 
-    <!-- LEFT CREATIVE PANEL -->
-    <div class="left">
-        <div class="circle">
-            <span>AI</span>
-        </div>
-        <h2>Welcome Back</h2>
-        <p>Login to access your powerful dashboard and manage everything in one place.</p>
+    <form class="login-form">
+    
+    <div class="input-group">
+        <input type="email" placeholder="Email Address" required>
     </div>
 
-    <!-- RIGHT LOGIN FORM -->
-    <div class="right">
-        <h1>Login</h1>
-
-        <div class="input-group">
-            <input type="email" placeholder="Email Address">
-        </div>
-
-        <div class="input-group">
-            <input type="password" placeholder="Password">
-        </div>
-
-        <button class="btn">Login</button>
-        <button class="btn secondary-btn"><a href="signup.html">Sign up</button>
-
-        <div class="footer">
-            © 2026 Your Company
-        </div>
+    <div class="input-group">
+        <input type="password" placeholder="Password" required>
     </div>
 
+    <button type="submit" class="btn">Login</button>
+
+    <p id="message"></p>
+
+</form>
+
+
+    <a href="signup.html" class="btn secondary-btn">Sign Up</a>
+
+    <div class="footer">
+        © 2026 Your Company
+    </div>
 </div>
 
-</body>
-</html>
+<script src="login.js"></script>

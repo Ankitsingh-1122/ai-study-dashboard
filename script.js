@@ -30,36 +30,57 @@ document.addEventListener("click", function(e) {
 });
 
 
-// Login Logic
-const form = document.querySelector(".login-form");
-const message = document.getElementById("message");
+// ===== LOGIN LOGIC =====
+document.addEventListener("DOMContentLoaded", () => {
 
-form.addEventListener("submit", async function(e) {
-    e.preventDefault();
+    const form = document.querySelector(".login-form");
+    const message = document.getElementById("message");
 
-    const email = form.querySelector("input[type='email']").value;
-    const password = form.querySelector("input[type='password']").value;
+    if (!form) {
+        console.error("Login form not found!");
+        return;
+    }
 
-    const response = await fetch("https://myserver-8ggd.onrender.com/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const email = form.querySelector("input[type='email']").value;
+        const password = form.querySelector("input[type='password']").value;
+
+        try {
+
+            const response = await fetch("https://myserver-8ggd.onrender.com/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+
+                // Save token
+                localStorage.setItem("token", data.token);
+
+                message.style.color = "lightgreen";
+                message.textContent = "Login successful ✅";
+
+                setTimeout(() => {
+                    window.location.href = "dashboard.html";
+                }, 1000);
+
+            } else {
+                message.style.color = "red";
+                message.textContent = data.message;
+            }
+
+        } catch (error) {
+            message.style.color = "red";
+            message.textContent = "Server error ❌";
+        }
+
     });
 
-    const data = await response.json();
-
-    if (data.success) {
-        message.style.color = "lightgreen";
-        message.textContent = "Login successful ✅";
-
-        setTimeout(() => {
-            window.location.href = "dashboard.html";
-        }, 1000);
-
-    } else {
-        message.style.color = "red";
-        message.textContent = "Login unsuccessful ❌";
-    }
 });
