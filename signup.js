@@ -1,31 +1,25 @@
 const form = document.getElementById("signupForm");
-const errorMessage = document.getElementById("errorMessage");
+const message = document.getElementById("message");
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = form.querySelector("input[type='email']").value;
-    const password = form.querySelector("input[type='password']").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    try {
-        const response = await fetch("https://myserver-8ggd.onrender.com/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, password })
-        });
+    const res = await fetch("https://myserver-8ggd.onrender.com/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    });
 
-        const data = await response.json();
+    const data = await res.json();
 
-        if (data.success) {
-            localStorage.setItem("token", data.token);
-            window.location.href = "dashboard.html";
-        } else {
-            errorMessage.innerText = data.message;
-        }
-
-    } catch (error) {
-        errorMessage.innerText = "Server error. Try again.";
+    if (data.success) {
+        message.style.color = "#00ff88";
+        message.innerText = "Account created successfully ✅";
+    } else {
+        message.style.color = "#ff4b5c";
+        message.innerText = data.message;
     }
 });

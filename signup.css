@@ -1,47 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
 body {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: Arial;
+    overflow: hidden;
+    position: relative;
+
+    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
+    background-size: 400% 400%;
+    animation: gradientBG 18s ease infinite;
 }
 
-.login-container {
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(15px);
-    padding: 40px;
-    border-radius: 20px;
-    width: 300px;
+/* 🔥 Animated Gradient */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🌈 Floating Glowing Blobs */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.6;
+    animation: float 12s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #9b5de5;
+    top: -150px;
+    left: -150px;
+}
+
+body::after {
+    background: #00f5d4;
+    bottom: -150px;
+    right: -150px;
+}
+
+@keyframes float {
+    from { transform: translateY(0px) rotate(0deg); }
+    to { transform: translateY(50px) rotate(30deg); }
+}
+
+/* ✨ Glass Card */
+.card {
+    width: 380px;
+    padding: 45px;
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow: 0 25px 70px rgba(0,0,0,0.7);
     text-align: center;
     color: white;
+
+    position: relative;
+    z-index: 10;
+
+    animation: fadeIn 1s ease;
 }
 
-input {
+.card h1 {
+    margin-bottom: 35px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Input */
+.input-group {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.input-group input {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-bottom: 1px solid white;
+    padding: 12px 10px;
     background: transparent;
-    color: white;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
     border: none;
-    border-radius: 20px;
-    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border-bottom: 2px solid rgba(255,255,255,0.4);
     color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-bottom: 2px solid #00f5d4;
+}
+
+.input-group label {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    color: rgba(255,255,255,0.6);
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+    top: -10px;
+    font-size: 12px;
+    color: #00f5d4;
+}
+
+/* 🔥 Neon Button */
+.btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 40px;
+
+    background: linear-gradient(90deg, #ff416c, #ff4b2b, #9b5de5);
+    background-size: 200% 200%;
+
+    color: white;
+    font-size: 16px;
     cursor: pointer;
+    transition: 0.4s;
 }
 
-.error {
-    color: #ffdddd;
-    margin-top: 10px;
+.btn:hover {
+    transform: scale(1.05);
+    background-position: right center;
+    box-shadow: 0 0 30px #9b5de5;
 }
 
-.switch {
+/* Login link */
+.login-link {
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #00f5d4;
+    text-decoration: none;
+}
+
+#message {
     margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
 }

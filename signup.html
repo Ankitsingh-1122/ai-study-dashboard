@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account</title>
+<link rel="stylesheet" href="signup.css">
 </head>
 <body>
 
-<div class="login-container">
-    <h2>Create Account</h2>
+<div class="container">
+    <div class="card">
+        <h1>Create Account</h1>
 
-    <form id="signupForm">
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
+        <form id="signupForm">
+            <div class="input-group">
+                <input type="email" id="email" required>
+                <label>Email Address</label>
+            </div>
 
-        <button type="submit">Sign Up</button>
+            <div class="input-group">
+                <input type="password" id="password" required>
+                <label>Password</label>
+            </div>
 
-        <p id="errorMessage" class="error"></p>
-    </form>
+            <button type="submit" class="btn">Sign Up</button>
+            <p id="message"></p>
+        </form>
 
-    <p class="switch">
-        Already have an account?
-        <a href="index.html">Login</a>
-    </p>
+        <p class="login-link">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+    </div>
 </div>
 
 <script src="signup.js"></script>
