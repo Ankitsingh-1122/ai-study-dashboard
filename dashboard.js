@@ -1,55 +1,51 @@
-// 1. Live Time Update
-const updateClock = () => {
-    const clock = document.getElementById('current-time');
-    clock.innerText = new Date().toLocaleTimeString('en-GB', { hour12: false });
-};
-setInterval(updateClock, 1000);
-updateClock();
-
-// 2. Theme Toggle (Light/Dark Mode)
-const modeToggle = document.getElementById('mode-toggle');
-const body = document.body;
-
-modeToggle.addEventListener('change', () => {
-    body.classList.toggle('light-mode');
-    body.classList.toggle('dark-mode');
-});
-
-// 3. Hour Slider & Progress Interaction
-const slider = document.getElementById('hour-slider');
-const hourDisplay = document.getElementById('hour-val');
-const progressFill = document.querySelector('.neon-progress-fill');
-
-slider.addEventListener('input', (e) => {
-    const value = e.target.value;
-    hourDisplay.innerText = value;
+document.addEventListener('DOMContentLoaded', () => {
     
-    // Update visual progress
-    const percentage = (value / 12) * 100;
-    progressFill.style.width = percentage + '%';
-    
-    // Dynamic glow intensification
-    progressFill.style.boxShadow = `0 0 ${10 + (value * 2)}px var(--neon-purple)`;
-});
+    // 1. Digital Clock Logic
+    const clock = () => {
+        const timeBox = document.getElementById('current-time');
+        const now = new Date();
+        timeBox.innerText = now.toTimeString().split(' ')[0];
+    };
+    setInterval(clock, 1000);
+    clock();
 
-// 4. Sidebar Nav Active State
-const navItems = document.querySelectorAll('.nav-links li');
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        navItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
+    // 2. Study Slider Interaction
+    const slider = document.getElementById('hour-slider');
+    const valDisplay = document.getElementById('hour-val');
+    const fill = document.getElementById('study-fill');
+
+    slider.addEventListener('input', (e) => {
+        const val = e.target.value;
+        valDisplay.innerHTML = `${val}<small>h</small>`;
+        
+        // Update the visual progress bar width
+        const percentage = (val / 12) * 100;
+        fill.style.width = `${percentage}%`;
     });
-});
 
-// 5. Entrance Animation
-window.addEventListener('load', () => {
-    document.querySelectorAll('.card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            card.style.transition = '0.6s ease-out';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 100);
+    // 3. Counter Animation (Discipline Score)
+    const animateDiscipline = () => {
+        const counter = document.querySelector('.counter');
+        let count = 0;
+        const target = 82;
+        
+        const update = () => {
+            if(count < target) {
+                count++;
+                counter.innerText = count + "%";
+                setTimeout(update, 20);
+            }
+        };
+        update();
+    };
+    animateDiscipline();
+
+    // 4. Navigation Toggle
+    const links = document.querySelectorAll('.nav-links li');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
     });
 });
