@@ -16,9 +16,21 @@ form.addEventListener("submit", async (e) => {
     const data = await res.json();
 
     if (data.success) {
-        message.style.color = "#00ff88";
-        message.innerText = "Account created successfully ✅";
-    } else {
+
+    // 🔥 Token save (agar backend token bhej raha hai)
+    if (data.token) {
+        localStorage.setItem("token", data.token);
+    }
+
+    message.style.color = "#00ff88";
+    message.innerText = "Account created successfully ✅";
+
+    // ⏳ 1 second baad redirect
+    setTimeout(() => {
+        window.location.href = "index.html";  // yaha login page ka naam likho
+    }, 1000);
+}
+ else {
         message.style.color = "#ff4b5c";
         message.innerText = data.message;
     }
