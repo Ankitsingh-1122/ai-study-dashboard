@@ -1,44 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Login</title>
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;900&display=swap" rel="stylesheet">
-
-<!-- External CSS File -->
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Login | Ankit App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="right">
-    <h1>Login</h1>
-
+<div class="login-container">
     <form class="login-form">
-    
-    <div class="input-group">
-        <input type="email" placeholder="Email Address" required>
-    </div>
+        <h2>Welcome Back</h2>
 
-    <div class="input-group">
-        <input type="password" placeholder="Password" required>
-    </div>
+        <div class="input-group">
+            <input type="email" required>
+            <label>Email</label>
+        </div>
 
-    <button type="submit" class="btn">Login</button>
+        <div class="input-group">
+            <input type="password" required>
+            <label>Password</label>
+        </div>
 
-    <p id="message"></p>
+        <button type="submit">Login</button>
 
-</form>
+        <p id="message" class="message"></p>
 
-
-    <a href="signup.html" class="btn secondary-btn">Sign Up</a>
-
-    <div class="footer">
-        © 2026 Your Company
-    </div>
+        <p class="signup-text">
+            Don't have an account? <a href="signup.html">Sign up</a>
+        </p>
+    </form>
 </div>
 
 <script src="script.js"></script>
+</body>
+</html>
