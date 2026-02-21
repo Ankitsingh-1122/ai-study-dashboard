@@ -2,94 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>StudentOS Colorful Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Core AI | Command Center</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="app-wrapper">
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo"><i class="fas fa-rocket"></i> <span>CORE AI</span></div>
-            </div>
-            <ul class="nav-links">
-                <li class="active"><i class="fas fa-th-large"></i> Dashboard</li>
-                <li><i class="fas fa-chart-line"></i> Analytics</li>
-                <li><i class="fas fa-wallet"></i> Savings</li>
-                <li><i class="fas fa-cog"></i> Settings</li>
-            </ul>
-            <div class="sidebar-footer">
-                <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </div>
-        </nav>
-
-        <main class="main-viewport">
-            <header class="main-header">
-                <div class="welcome-section">
-                    <h1>Command Center</h1>
-                    <p>Status: <span class="neon-text">Optimal</span></p>
-                </div>
-                <div class="header-right">
-                    <div id="current-time" class="digital-clock">00:00:00</div>
-                </div>
-            </header>
-
-            <div class="content-container">
-                <div class="command-grid">
-                    <section class="pillar-col pillar-magenta">
-                        <h3 class="col-title">Reliability</h3>
-                        <div class="pillar-content">
-                            <div class="visual-box">
-                                <h2 class="counter">82%</h2>
-                            </div>
-                            <p class="description">System discipline is stable.</p>
-                        </div>
-                    </section>
-
-                    <section class="pillar-col pillar-cyan">
-                        <h3 class="col-title">Intellect</h3>
-                        <div class="pillar-content">
-                            <h2 class="big-val" id="hour-val">5<small>h</small></h2>
-                            <input type="range" class="full-slider" id="hour-slider" value="5" min="1" max="12">
-                            <div class="progress-track"><div class="fill" id="study-fill" style="width:41%"></div></div>
-                        </div>
-                    </section>
-
-                    <section class="pillar-col pillar-gold">
-                        <h3 class="col-title">Momentum</h3>
-                        <div class="pillar-content">
-                            <div class="fire-box"><i class="fas fa-fire"></i></div>
-                            <h2 class="big-val">12</h2>
-                            <p class="unit">DAY STREAK</p>
-                        </div>
-                    </section>
-
-                    <section class="pillar-col pillar-emerald">
-                        <h3 class="col-title">Resources</h3>
-                        <div class="pillar-content">
-                            <h2 class="big-val">₹15k</h2>
-                            <div class="payout-tag">Next: 4 Days</div>
-                        </div>
-                    </section>
-
-                    <section class="pillar-col pillar-royal">
-                        <h3 class="col-title">Neural Link</h3>
-                        <div class="pillar-content">
-                            <div class="ai-orb"></div>
-                            <p class="ai-msg">Optimization Ready.</p>
-                            <button class="action-btn">INITIALIZE</button>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </main>
+<div id="setupModal" class="modal-overlay">
+    <div class="modal-card">
+        <h2>Welcome to StudentOS 🚀</h2>
+        <input type="text" id="userName" placeholder="Enter Your Name">
+        <select id="userCourse">
+            <option value="">Select Course</option>
+            <option>BTech / Engineering</option>
+            <option>Medical / MBBS</option>
+            <option>Commerce / MBA</option>
+            <option>Arts / Humanities</option>
+            <option>Science / BSC</option>
+        </select>
+        <button onclick="saveProfile()">Launch Dashboard</button>
     </div>
+</div>
 
-    <script src="dashboard.js"></script>
+<div class="container">
+
+    <aside class="sidebar">
+        <h2 class="logo">🚀 StudentOS</h2>
+        <ul>
+            <li class="active"><i class="fas fa-th-large"></i> Dashboard</li>
+            <li><i class="fas fa-folder-open"></i> Assignments</li>
+            <li><i class="fas fa-percentage"></i> CA Tracker</li>
+            <li><i class="fas fa-sticky-note"></i> Notes</li>
+            <li onclick="resetProfile()" class="reset"><i class="fas fa-sign-out-alt"></i> Reset</li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+
+        <header>
+            <div>
+                <h1 id="welcomeText">Welcome 👋</h1>
+                <span id="courseBadge" class="badge"></span>
+            </div>
+            <div id="currentDate" class="date"></div>
+        </header>
+
+        <section class="stats">
+            <div class="card gradient1">
+                <h3 id="taskCount">0</h3>
+                <p>Active Tasks</p>
+            </div>
+            <div class="card gradient2">
+                <h3 id="caAverage">--</h3>
+                <p>Avg CA</p>
+            </div>
+            <div class="card gradient3">
+                <h3 id="daysToExam">--</h3>
+                <p>Days to Exam</p>
+            </div>
+        </section>
+
+        <section class="dashboard-grid">
+
+            <div class="card colorful">
+                <h2>Assignments</h2>
+                <div class="add-task">
+                    <input type="text" id="taskInput" placeholder="Add new task...">
+                    <button onclick="addTask()">+</button>
+                </div>
+                <ul id="taskList"></ul>
+            </div>
+
+            <div class="card colorful">
+                <h2>Syllabus Progress</h2>
+                <div class="progress">
+                    <div class="bar" style="width:70%">Subject 1 - 70%</div>
+                </div>
+                <div class="progress">
+                    <div class="bar alt" style="width:45%">Subject 2 - 45%</div>
+                </div>
+                <div class="progress">
+                    <div class="bar alt2" style="width:90%">Subject 3 - 90%</div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+<div class="bg-shapes">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<ul>
+
+    <li onclick="alert('StudentOS v1.0\nBuilt for productivity.')"><i class="fas fa-info-circle"></i> About Us</li>
+    <li onclick="alert('Need help?\nContact support@studentos.com')"><i class="fas fa-question-circle"></i> Help</li>
+</ul>
+
+
+
+<script src="dashboard.js"></script>
 </body>
 </html>
