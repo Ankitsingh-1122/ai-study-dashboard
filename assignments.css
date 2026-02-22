@@ -1,0 +1,184 @@
+:root {
+    --primary: #a29bfe;
+    --accent: #00d2ff;
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+body {
+    margin: 0;
+    background: #0b0e14;
+    color: #fff;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at 20% 30%, #1e1b4b 0%, transparent 40%),
+                      radial-gradient(circle at 80% 70%, #312e81 0%, transparent 40%);
+}
+
+.dashboard-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* BIG SEARCH */
+.hero-search {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.hero-search h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #fff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.search-container-large {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    padding: 15px 30px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.search-container-large:focus-within {
+    transform: scale(1.05);
+    border-color: var(--accent);
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
+}
+
+.search-container-large input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1.2rem;
+    width: 100%;
+    margin-left: 15px;
+}
+
+/* QUICK UPLOAD DOCK */
+.upload-dock {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 50px;
+    backdrop-filter: blur(10px);
+}
+
+.dock-content {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+
+.input-field label {
+    font-size: 0.8rem;
+    color: #a29bfe;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-field input, .input-field select {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--glass-border);
+    padding: 12px;
+    border-radius: 12px;
+    color: white;
+    outline: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover { box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); transform: translateY(-2px); }
+
+/* ASSIGNMENT CARDS */
+.assignments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.subject-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    transition: 0.3s;
+    animation: slideUp 0.5s ease backwards;
+}
+
+.subject-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-10px); }
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* HELPER BOT */
+.helper-bot {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bot-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    z-index: 2;
+    box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
+}
+
+.bot-text { margin-top: 10px; font-size: 0.8rem; font-weight: bold; color: var(--accent); }
+
+.pulse {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: var(--accent);
+    border-radius: 20px;
+    animation: pulseAnim 2s infinite;
+    z-index: 1;
+}
+
+@keyframes pulseAnim {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
