@@ -6,7 +6,7 @@ let assignments = [
 const grid = document.getElementById('assignmentGrid');
 const searchInput = document.getElementById('assignmentSearch');
 
-// ================= RENDER ASSIGNMENTS =================
+// ================= RENDER =================
 function render(filter = "") {
     grid.innerHTML = "";
 
@@ -28,7 +28,7 @@ function render(filter = "") {
 
         card.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <h3 style="margin:0; color:var(--primary)">${subject}</h3>
+                <h3 style="margin:0;">${subject}</h3>
                 <span style="font-size:0.7rem; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:5px;">
                     ${groups[subject].length} Tasks
                 </span>
@@ -37,7 +37,7 @@ function render(filter = "") {
                 ${groups[subject].map(task => `
                     <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05)">
                         <span>${task.name}</span>
-                        <i class="fas fa-file-pdf" style="color:var(--accent)"></i>
+                        <i class="fas fa-file-pdf"></i>
                     </div>
                 `).join('')}
             </div>
@@ -47,7 +47,7 @@ function render(filter = "") {
     });
 }
 
-// ================= ADD ASSIGNMENT =================
+// ================= ADD =================
 document.getElementById('addBtn').onclick = () => {
     const name = document.getElementById('taskName').value;
     const subject = document.getElementById('subjectSelect').value;
@@ -62,7 +62,7 @@ document.getElementById('addBtn').onclick = () => {
 // ================= SEARCH =================
 searchInput.oninput = (e) => render(e.target.value);
 
-// ================= HELPER INTEGRATION =================
+// ================= HELPER =================
 
 const helperBtn = document.getElementById("helperBtn");
 const helperModal = document.getElementById("helperModal");
@@ -71,18 +71,18 @@ const sendHelper = document.getElementById("sendHelper");
 const helperOutput = document.getElementById("helperOutput");
 const helperInput = document.getElementById("helperInput");
 
-// Open modal
+// Open
 helperBtn.onclick = () => {
-    helperModal.style.display = "flex";
+    helperModal.classList.add("active");
     helperInput.focus();
 };
 
-// Close modal
+// Close
 closeHelper.onclick = () => {
-    helperModal.style.display = "none";
+    helperModal.classList.remove("active");
 };
 
-// Format AI Response
+// Markdown format fix
 function formatResponse(text) {
     return text
         .replace(/\n/g, "<br>")
@@ -90,11 +90,11 @@ function formatResponse(text) {
         .replace(/\*(.*?)\*/g, "<i>$1</i>");
 }
 
-// Send to backend
+// Send
 sendHelper.onclick = sendMessage;
 
-// Allow Enter key
-helperInput.addEventListener("keypress", function (e) {
+// Enter key
+helperInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
         sendMessage();
     }
@@ -106,7 +106,6 @@ async function sendMessage() {
     if (!message) return;
 
     helperOutput.innerHTML = "🤖 Thinking...";
-    helperOutput.classList.add("ai-response");
 
     try {
 
@@ -118,20 +117,23 @@ async function sendMessage() {
             body: JSON.stringify({ message })
         });
 
+        if (!response.ok) {
+            throw new Error("Server error");
+        }
+
         const data = await response.json();
 
-        if (data.reply) {
-            helperOutput.innerHTML = formatResponse(data.reply);
-        } else {
-            helperOutput.innerHTML = "⚠️ No response received.";
-        }
+        helperOutput.innerHTML = data.reply
+            ? formatResponse(data.reply)
+            : "⚠️ No response received.";
 
     } catch (err) {
         helperOutput.innerHTML = "❌ Error connecting to AI";
+        console.error(err);
     }
 
     helperInput.value = "";
 }
 
-// ================= INITIAL LOAD =================
+// ================= INIT =================
 render();
