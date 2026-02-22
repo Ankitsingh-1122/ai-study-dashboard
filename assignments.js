@@ -6,11 +6,12 @@ let assignments = [
 const grid = document.getElementById('assignmentGrid');
 const searchInput = document.getElementById('assignmentSearch');
 
+// ================= RENDER ASSIGNMENTS =================
 function render(filter = "") {
     grid.innerHTML = "";
-    
-    const filtered = assignments.filter(a => 
-        a.name.toLowerCase().includes(filter.toLowerCase()) || 
+
+    const filtered = assignments.filter(a =>
+        a.name.toLowerCase().includes(filter.toLowerCase()) ||
         a.subject.toLowerCase().includes(filter.toLowerCase())
     );
 
@@ -24,6 +25,7 @@ function render(filter = "") {
         const card = document.createElement('div');
         card.className = 'subject-card';
         card.style.animationDelay = `${index * 0.1}s`;
+
         card.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <h3 style="margin:0; color:var(--primary)">${subject}</h3>
@@ -40,23 +42,24 @@ function render(filter = "") {
                 `).join('')}
             </div>
         `;
+
         grid.appendChild(card);
     });
 }
 
-// Add Assignment
+// ================= ADD ASSIGNMENT =================
 document.getElementById('addBtn').onclick = () => {
     const name = document.getElementById('taskName').value;
     const subject = document.getElementById('subjectSelect').value;
 
-    if (name) {
+    if (name.trim()) {
         assignments.unshift({ name, subject, file: "new_upload.pdf" });
         render();
         document.getElementById('taskName').value = "";
     }
 };
 
-// Search
+// ================= SEARCH =================
 searchInput.oninput = (e) => render(e.target.value);
 
 // ================= HELPER INTEGRATION =================
@@ -66,10 +69,12 @@ const helperModal = document.getElementById("helperModal");
 const closeHelper = document.getElementById("closeHelper");
 const sendHelper = document.getElementById("sendHelper");
 const helperOutput = document.getElementById("helperOutput");
+const helperInput = document.getElementById("helperInput");
 
 // Open modal
 helperBtn.onclick = () => {
     helperModal.style.display = "flex";
+    helperInput.focus();
 };
 
 // Close modal
@@ -77,13 +82,31 @@ closeHelper.onclick = () => {
     helperModal.style.display = "none";
 };
 
-// Send to backend
-sendHelper.onclick = async () => {
+// Format AI Response
+function formatResponse(text) {
+    return text
+        .replace(/\n/g, "<br>")
+        .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
+        .replace(/\*(.*?)\*/g, "<i>$1</i>");
+}
 
-    const message = document.getElementById("helperInput").value;
+// Send to backend
+sendHelper.onclick = sendMessage;
+
+// Allow Enter key
+helperInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
+
+async function sendMessage() {
+
+    const message = helperInput.value.trim();
     if (!message) return;
 
-    helperOutput.innerText = "🤖 Thinking...";
+    helperOutput.innerHTML = "🤖 Thinking...";
+    helperOutput.classList.add("ai-response");
 
     try {
 
@@ -97,12 +120,18 @@ sendHelper.onclick = async () => {
 
         const data = await response.json();
 
-        helperOutput.innerText = data.reply;
+        if (data.reply) {
+            helperOutput.innerHTML = formatResponse(data.reply);
+        } else {
+            helperOutput.innerHTML = "⚠️ No response received.";
+        }
 
     } catch (err) {
-        helperOutput.innerText = "❌ Error connecting to AI";
+        helperOutput.innerHTML = "❌ Error connecting to AI";
     }
-};
 
-// Initial Load
+    helperInput.value = "";
+}
+
+// ================= INITIAL LOAD =================
 render();

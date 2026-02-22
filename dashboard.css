@@ -207,7 +207,13 @@ header {
 .modal-card button:hover {
     transform: scale(1.1);
 }
-
+.ai-response {
+    max-height: 350px;
+    overflow-y: auto;
+    line-height: 1.6;
+    margin-top: 10px;
+    white-space: normal;
+}
 .modal-overlay {
     position: fixed;
     top: 0;
