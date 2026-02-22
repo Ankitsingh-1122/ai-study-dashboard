@@ -11,79 +11,96 @@
 
 <body>
 
-<div class="dashboard-wrapper">
+    <!-- ===== Animated Gradient Background ===== -->
+    <div class="animated-bg"></div>
 
-    <section class="hero-search">
-        <h1 class="fade-in">What are we working on today?</h1>
-        <div class="search-container-large">
-            <i class="fas fa-search"></i>
-            <input type="text" id="assignmentSearch"
-                   placeholder="Search your assignments by name or subject...">
-            <span class="search-shortcut">Ctrl + K</span>
-        </div>
-    </section>
+    <!-- ===== Floating Blobs ===== -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-    <section class="upload-dock fade-in">
-        <div class="dock-content">
+    <!-- ===== Floating Particles ===== -->
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-            <div class="input-field">
-                <label>Assignment Name</label>
-                <input type="text" id="taskName" placeholder="e.g. Unit 1 Quiz">
+    <!-- ===== Cursor Glow ===== -->
+    <div class="cursor-glow"></div>
+
+    <!-- ===== Main Wrapper ===== -->
+    <div class="dashboard-wrapper">
+
+        <section class="hero-search fade-up">
+            <h1>What are we working on today?</h1>
+            <div class="search-container-large">
+                <i class="fas fa-search"></i>
+                <input type="text" id="assignmentSearch"
+                       placeholder="Search your assignments by name or subject...">
+                <span class="search-shortcut">Ctrl + K</span>
             </div>
+        </section>
 
-            <div class="input-field">
-                <label>Subject</label>
-                <select id="subjectSelect">
-                    <option value="Physics">Physics</option>
-                    <option value="Environmental Studies">Environmental Studies</option>
-                    <option value="English">English</option>
-                    <option value="Math">Math</option>
-                    <option value="C Programming">C Programming</option>
-                    <option value="DBMS">DBMS</option>
-                </select>
+        <section class="upload-dock fade-up">
+            <div class="dock-content">
+
+                <div class="input-field">
+                    <label>Assignment Name</label>
+                    <input type="text" id="taskName" placeholder="e.g. Unit 1 Quiz">
+                </div>
+
+                <div class="input-field">
+                    <label>Subject</label>
+                    <select id="subjectSelect">
+                        <option value="Physics">Physics</option>
+                        <option value="Environmental Studies">Environmental Studies</option>
+                        <option value="English">English</option>
+                        <option value="Math">Math</option>
+                        <option value="C Programming">C Programming</option>
+                        <option value="DBMS">DBMS</option>
+                    </select>
+                </div>
+
+                <div class="file-area">
+                    <input type="file" id="file-upload" hidden>
+                    <button class="btn-secondary"
+                            onclick="document.getElementById('file-upload').click()">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                </div>
+
+                <button id="addBtn" class="btn-primary">Add Assignment</button>
+
             </div>
+        </section>
 
-            <div class="file-area">
-                <input type="file" id="file-upload" hidden>
-                <button class="btn-secondary"
-                        onclick="document.getElementById('file-upload').click()">
-                    <i class="fas fa-paperclip"></i>
-                </button>
-            </div>
+        <div class="assignments-grid fade-up" id="assignmentGrid"></div>
 
-            <button id="addBtn" class="btn-primary">Add Assignment</button>
-
-        </div>
-    </section>
-
-    <div class="assignments-grid" id="assignmentGrid"></div>
-
-    <!-- ================= HELPER FLOAT BUTTON ================= -->
-    <div class="helper-bot" id="helperBtn" title="Ask Helper">
-        <div class="pulse"></div>
-        <div class="bot-icon">
+        <!-- ===== Helper Button ===== -->
+        <div class="helper-bot" id="helperBtn" title="Ask Helper">
             <i class="fas fa-wand-magic-sparkles"></i>
         </div>
-        <span class="bot-text">Helper</span>
+
     </div>
 
-</div>
+    <!-- ===== Helper Modal ===== -->
+    <div id="helperModal" class="modal-overlay">
+        <div class="modal-card">
+            <span id="closeHelper" class="close-btn">&times;</span>
+            <h3>🤖 AI Helper</h3>
 
-<!-- ================= HELPER MODAL (Structure Only) ================= -->
-<div id="helperModal" class="modal-overlay">
-    <div class="modal-card">
-        <span id="closeHelper" style="float:right;cursor:pointer;">&times;</span>
-        <h3>🤖 AI Helper</h3>
+            <textarea id="helperInput" placeholder="Ask something..."></textarea>
+            <button id="sendHelper">Ask AI</button>
 
-        <textarea id="helperInput" placeholder="Ask something..."></textarea>
-
-        <button id="sendHelper">Ask AI</button>
-
-        <div id="helperOutput"></div>
+            <div id="helperOutput"></div>
+        </div>
     </div>
-</div>
 
-<script src="assignments.js"></script>
+    <script src="assignments.js"></script>
 
 </body>
 </html>
