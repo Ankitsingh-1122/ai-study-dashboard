@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Assignments | StudentOS</title>
@@ -34,13 +35,18 @@
 
     <!-- ===== Main Wrapper ===== -->
     <div class="dashboard-wrapper">
+        <!-- ===== DASHBOARD NAV BUTTON ===== -->
+        <div class="top-nav">
+            <button id="goDashboard" class="dashboard-btn">
+                <i class="fas fa-chart-line"></i> Dashboard
+            </button>
+        </div>
 
         <section class="hero-search fade-up">
             <h1>What are we working on today?</h1>
             <div class="search-container-large">
                 <i class="fas fa-search"></i>
-                <input type="text" id="assignmentSearch"
-                       placeholder="Search your assignments by name or subject...">
+                <input type="text" id="assignmentSearch" placeholder="Search your assignments by name or subject...">
                 <span class="search-shortcut">Ctrl + K</span>
             </div>
         </section>
@@ -67,8 +73,7 @@
 
                 <div class="file-area">
                     <input type="file" id="file-upload" hidden>
-                    <button class="btn-secondary"
-                            onclick="document.getElementById('file-upload').click()">
+                    <button class="btn-secondary" onclick="document.getElementById('file-upload').click()">
                         <i class="fas fa-paperclip"></i>
                     </button>
                 </div>
@@ -103,4 +108,5 @@
     <script src="assignments.js"></script>
 
 </body>
+
 </html>

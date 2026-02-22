@@ -70,6 +70,31 @@ body {
     }
 }
 
+
+/* ===== TOP NAV ===== */
+
+.top-nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.dashboard-btn {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(45deg,#00f2fe,#4facfe);
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.dashboard-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,255,255,0.8);
+}
+
 /* ================= GLASS EFFECT ================= */
 
 .hero-search,

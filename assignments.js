@@ -227,3 +227,9 @@ async function sendMessage() {
 /* ================= INIT ================= */
 
 render();
+
+// ===== DASHBOARD REDIRECT =====
+
+document.getElementById("goDashboard").onclick = () => {
+    window.location.href = "dashboard.html";
+};
