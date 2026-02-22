@@ -9,20 +9,17 @@ const searchInput = document.getElementById('assignmentSearch');
 function render(filter = "") {
     grid.innerHTML = "";
     
-    // Filtering logic
     const filtered = assignments.filter(a => 
         a.name.toLowerCase().includes(filter.toLowerCase()) || 
         a.subject.toLowerCase().includes(filter.toLowerCase())
     );
 
-    // Grouping
     const groups = filtered.reduce((acc, curr) => {
         if (!acc[curr.subject]) acc[curr.subject] = [];
         acc[curr.subject].push(curr);
         return acc;
     }, {});
 
-    // Create Cards
     Object.keys(groups).forEach((subject, index) => {
         const card = document.createElement('div');
         card.className = 'subject-card';
@@ -47,7 +44,7 @@ function render(filter = "") {
     });
 }
 
-// Add Functionality
+// Add Assignment
 document.getElementById('addBtn').onclick = () => {
     const name = document.getElementById('taskName').value;
     const subject = document.getElementById('subjectSelect').value;
@@ -59,12 +56,52 @@ document.getElementById('addBtn').onclick = () => {
     }
 };
 
-// Real-time Search
+// Search
 searchInput.oninput = (e) => render(e.target.value);
 
-// Helper Bot Click (Connect your API here)
-document.getElementById('helperBtn').onclick = () => {
-    alert("Helper Bot Activated! Ready for your API integration.");
+// ================= HELPER INTEGRATION =================
+
+const helperBtn = document.getElementById("helperBtn");
+const helperModal = document.getElementById("helperModal");
+const closeHelper = document.getElementById("closeHelper");
+const sendHelper = document.getElementById("sendHelper");
+const helperOutput = document.getElementById("helperOutput");
+
+// Open modal
+helperBtn.onclick = () => {
+    helperModal.style.display = "flex";
+};
+
+// Close modal
+closeHelper.onclick = () => {
+    helperModal.style.display = "none";
+};
+
+// Send to backend
+sendHelper.onclick = async () => {
+
+    const message = document.getElementById("helperInput").value;
+    if (!message) return;
+
+    helperOutput.innerText = "🤖 Thinking...";
+
+    try {
+
+        const response = await fetch("https://myserver-8ggd.onrender.com/helper", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message })
+        });
+
+        const data = await response.json();
+
+        helperOutput.innerText = data.reply;
+
+    } catch (err) {
+        helperOutput.innerText = "❌ Error connecting to AI";
+    }
 };
 
 // Initial Load

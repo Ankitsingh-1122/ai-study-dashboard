@@ -177,6 +177,52 @@ body {
     animation: pulseAnim 2s infinite;
     z-index: 1;
 }
+/* ================= HELPER MODAL ================= */
+
+.helper-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.helper-box {
+  background: #1e222d;
+  padding: 20px;
+  border-radius: 16px;
+  width: 400px;
+  color: white;
+}
+
+.helper-box textarea {
+  width: 100%;
+  height: 90px;
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 8px;
+  border: none;
+  resize: none;
+}
+
+.helper-box button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: #7f5cff;
+  color: white;
+  cursor: pointer;
+}
+
+#helperOutput {
+  margin-top: 12px;
+  color: #00f5d4;
+  white-space: pre-wrap;
+}
 
 @keyframes pulseAnim {
     0% { transform: scale(1); opacity: 0.5; }
